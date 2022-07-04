@@ -3,7 +3,7 @@ package com.company;
 public class Character {
     protected String name;
     protected int strength;
-    protected int health;
+    protected int health = 100;
     protected int stamina;
     protected int speed;
     protected int attackPower;
@@ -13,6 +13,17 @@ public class Character {
     public Character() {
 
     };
+    public Character(String name){
+        this.name = name;
+    }
+
+    public Character(int strength, int health, int stamina, int speed, int attackPower) {
+        this.strength = strength;
+        this.health = health;
+        this.stamina = stamina;
+        this.speed = speed;
+        this.attackPower = attackPower;
+    }
 
     public Character(String name, int strength, int health, int stamina, int speed, int attackPower, boolean running, boolean arrested) {
         this.name = name;
@@ -28,7 +39,7 @@ public class Character {
 
 
     public String getName() {
-        return name;
+        return this.name;
     }
 
     public void setName(String name) {
@@ -36,7 +47,7 @@ public class Character {
     }
 
     public int getStrength() {
-        return strength;
+        return this.strength;
     }
 
     public void setStrength(int strength) {
@@ -44,7 +55,7 @@ public class Character {
     }
 
     public int getHealth() {
-        return health;
+        return this.health;
     }
 
     public void setHealth(int health) {
@@ -52,7 +63,7 @@ public class Character {
     }
 
     public int getStamina() {
-        return stamina;
+        return this.stamina;
     }
 
     public void setStamina(int stamina) {
@@ -60,7 +71,7 @@ public class Character {
     }
 
     public int getSpeed() {
-        return speed;
+        return this.speed;
     }
 
     public void setSpeed(int speed) {
@@ -68,7 +79,7 @@ public class Character {
     }
 
     public int getAttackPower() {
-        return attackPower;
+        return this.attackPower;
     }
 
     public void setAttackPower(int attackPower) {
@@ -76,7 +87,7 @@ public class Character {
     }
 
     public boolean isRunning() {
-        return running;
+        return this.running;
     }
 
     public void setRunning(boolean running) {
@@ -84,17 +95,19 @@ public class Character {
     }
 
     public boolean isArrested() {
-        return arrested;
+        return this.arrested;
     }
 
     public void setArrested(boolean arrested) {
         this.arrested = arrested;
     }
 
-    public void attack(Character enemy){
-        enemy.getHealth();
-        int enemyHealth= enemy.getHealth()- this.getAttackPower();
-        enemy.setHealth(enemyHealth);
+    public void attack(Character oponent){
+        int a = oponent.getHealth()- this.getAttackPower();
+        oponent.setHealth(a);
+        System.out.println(
+                this.getName() + " attacked " + oponent.name + " ." + oponent.name + "'s current Health is " + a
+        );
     }
 
 }

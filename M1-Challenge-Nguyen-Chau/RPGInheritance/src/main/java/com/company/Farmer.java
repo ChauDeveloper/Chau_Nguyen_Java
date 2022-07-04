@@ -3,40 +3,28 @@ package com.company;
 public class Farmer extends Character{
     protected boolean plowing= false;
     protected boolean harvesting=false;
-
-    @Override
-    public void setStrength(int strength) {
-        super.setStrength(75);
+    public Farmer(){}
+    public Farmer(String name) {
+        super(75, 100, 75, 50, 1);
+        this.name = name;
     }
 
-    @Override
-    public void setHealth(int health) {
-        super.setHealth(100);
+
+
+
+    public boolean isPlowing() {
+        return plowing;
     }
 
-    @Override
-    public void setStamina(int stamina) {
-        super.setStamina(75);
+    public void setPlowing(boolean plowing) {
+        this.plowing = plowing;
     }
 
-    @Override
-    public void setSpeed(int speed) {
-        super.setSpeed(10);
+    public boolean isHarvesting() {
+        return harvesting;
     }
 
-    @Override
-    public void setAttackPower(int attackPower) {
-        super.setAttackPower(1);
+    public void setHarvesting(boolean harvesting) {
+        this.harvesting = harvesting;
     }
-
-    @Override
-    public void setRunning(boolean running) {
-        super.setRunning(false);
-    }
-
-    @Override
-    public void setArrested(boolean arrested) {
-        super.setArrested(false);
-    }
-
 }
