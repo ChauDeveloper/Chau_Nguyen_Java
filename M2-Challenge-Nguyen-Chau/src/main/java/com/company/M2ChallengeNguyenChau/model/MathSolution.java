@@ -1,36 +1,47 @@
 package com.company.M2ChallengeNguyenChau.model;
 
+import javax.validation.constraints.Digits;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import java.util.Objects;
 
 public class MathSolution {
-    @NotEmpty(message = "Must enter an integer value for both operand1")
-    private int operand1;
-    @NotEmpty(message = "Must enter an integer value for both operand1")
-    private int operand2;
+
+    @NotEmpty(message = "must be a number")
+    private String operand1;
+
+    @NotEmpty(message = "must be a number")
+    private String operand2;
     private String operation;
     private int answer;
 
-    public MathSolution(int operand1, int operand2, String operation, int answer) {
+    public MathSolution (){}
+
+    public MathSolution(String operand1, String operand2) {
+        this.operand1 = operand1;
+        this.operand2 = operand2;
+    }
+    public MathSolution(String operand1, String operand2, String operation, int answer) {
         this.operand1 = operand1;
         this.operand2 = operand2;
         this.operation = operation;
         this.answer = answer;
     }
 
-    public int getOperand1() {
+    public String getOperand1() {
         return operand1;
     }
 
-    public void setOperand1(int operand1) {
+    public void setOperand1(String operand1) {
         this.operand1 = operand1;
     }
 
-    public int getOperand2() {
+    public String getOperand2() {
         return operand2;
     }
 
-    public void setOperand2(int operand2) {
+    public void setOperand2(String operand2) {
         this.operand2 = operand2;
     }
 

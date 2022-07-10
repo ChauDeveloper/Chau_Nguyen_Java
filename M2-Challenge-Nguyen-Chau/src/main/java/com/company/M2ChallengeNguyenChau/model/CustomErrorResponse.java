@@ -45,7 +45,7 @@ public class CustomErrorResponse {
         this.errorCode = errorCode;
     }
 
-    public LocalDateTime gettimestamp() {
+    public LocalDateTime getTimestamp() {
         return timestamp;
     }
 
