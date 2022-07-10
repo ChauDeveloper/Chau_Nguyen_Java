@@ -36,6 +36,8 @@ public class CalculatorControllerTest {
         outputObject2 = new MathSolution();
     }
 
+
+    //Tests for Add Endpoint
     @Test
     public void shouldReturnCorrectAdditionOperationWithCreatedStatus() throws Exception {
         String inputJson = mapper.writeValueAsString(inputObject1);
@@ -50,7 +52,34 @@ public class CalculatorControllerTest {
                .andExpect(status().isCreated())
                .andExpect(content().json(outputJson));
     }
+    @Test
+    public void shouldThrow422ErrorWhenMissingOneOperandOnAdditionOperation() throws Exception {
+        inputObject2.setOperand1("5");
+        String inputJson = mapper.writeValueAsString(inputObject2);
+        mockMvc.perform(
+                        post("/add")
+                                .content(inputJson)
+                                .contentType(MediaType.APPLICATION_JSON))
+                .andDo(print())
+                .andExpect(status().isUnprocessableEntity());
+    }
+    @Test
+    public void shouldThrow422ErrorWhenOperandContainsAlphabeticCharacterOnAdditionOperation() throws Exception {
+        inputObject2.setOperand1("5");
+        inputObject2.setOperand2("string");
+        String inputJson = mapper.writeValueAsString(inputObject2);
+        mockMvc.perform(
+                        post("/add")
+                                .content(inputJson)
+                                .contentType(MediaType.APPLICATION_JSON))
+                .andDo(print())
+                .andExpect(status().isUnprocessableEntity());
+    }
 
+
+
+
+    //Tests for Subtract Endpoint
     @Test
     public void shouldReturnCorrectSubtractionOperationWithCreatedStatus() throws Exception {
         String inputJson = mapper.writeValueAsString(inputObject1);
@@ -65,7 +94,34 @@ public class CalculatorControllerTest {
                 .andExpect(status().isCreated())
                 .andExpect(content().json(outputJson));
     }
+    @Test
+    public void shouldThrow422ErrorWhenMissingOneOperandOnSubtractionOperation() throws Exception {
+        inputObject2.setOperand1("5");
+        String inputJson = mapper.writeValueAsString(inputObject2);
+        mockMvc.perform(
+                        post("/subtract")
+                                .content(inputJson)
+                                .contentType(MediaType.APPLICATION_JSON))
+                .andDo(print())
+                .andExpect(status().isUnprocessableEntity());
+    }
+    @Test
+    public void shouldThrow422ErrorWhenOperandContainsAlphabeticCharacterOnSubtractionOperation() throws Exception {
+        inputObject2.setOperand1("5");
+        inputObject2.setOperand2("string");
+        String inputJson = mapper.writeValueAsString(inputObject2);
+        mockMvc.perform(
+                        post("/subtract")
+                                .content(inputJson)
+                                .contentType(MediaType.APPLICATION_JSON))
+                .andDo(print())
+                .andExpect(status().isUnprocessableEntity());
+    }
 
+
+
+
+    //Tests for Multiply Endpoint
     @Test
     public void shouldReturnCorrectMultiplicationOperationWithCreatedStatus() throws Exception {
         String inputJson = mapper.writeValueAsString(inputObject1);
@@ -80,7 +136,35 @@ public class CalculatorControllerTest {
                 .andExpect(status().isCreated())
                 .andExpect(content().json(outputJson));
     }
+    @Test
+    public void shouldThrow422ErrorWhenMissingOneOperandOnMultiplicationOperation() throws Exception {
+        inputObject2.setOperand1("5");
+        String inputJson = mapper.writeValueAsString(inputObject2);
+        mockMvc.perform(
+                        post("/multiply")
+                                .content(inputJson)
+                                .contentType(MediaType.APPLICATION_JSON))
+                .andDo(print())
+                .andExpect(status().isUnprocessableEntity());
+    }
+    @Test
+    public void shouldThrow422ErrorWhenOperandContainsAlphabeticCharacterOnMultiplicationOperation() throws Exception {
+        inputObject2.setOperand1("5");
+        inputObject2.setOperand2("string");
+        String inputJson = mapper.writeValueAsString(inputObject2);
+        mockMvc.perform(
+                        post("/multiply")
+                                .content(inputJson)
+                                .contentType(MediaType.APPLICATION_JSON))
+                .andDo(print())
+                .andExpect(status().isUnprocessableEntity());
+    }
 
+
+
+
+
+    //Tests for Divide Endpoint
     @Test
     public void shouldReturnCorrectDivisionOperationWithCreatedStatus() throws Exception {
         String inputJson = mapper.writeValueAsString(inputObject1);
@@ -95,32 +179,6 @@ public class CalculatorControllerTest {
                 .andExpect(status().isCreated())
                 .andExpect(content().json(outputJson));
     }
-
-    @Test
-    public void shouldThrow422ErrorWhenMissingOneOperand() throws Exception {
-        inputObject2.setOperand1("5");
-        String inputJson = mapper.writeValueAsString(inputObject2);
-        mockMvc.perform(
-                post("/add")
-                        .content(inputJson)
-                        .contentType(MediaType.APPLICATION_JSON))
-                .andDo(print())
-                .andExpect(status().isUnprocessableEntity());
-    }
-
-    @Test
-    public void shouldThrow422ErrorWhenOperandContainsAlphabeticCharacter() throws Exception {
-        inputObject2.setOperand1("5");
-        inputObject2.setOperand2("string");
-        String inputJson = mapper.writeValueAsString(inputObject2);
-        mockMvc.perform(
-                        post("/add")
-                                .content(inputJson)
-                                .contentType(MediaType.APPLICATION_JSON))
-                .andDo(print())
-                .andExpect(status().isUnprocessableEntity());
-    }
-
     @Test
     public void shouldThrow422ErrorWhenOperand2IsZero() throws Exception {
         inputObject2.setOperand1("5");
@@ -133,4 +191,28 @@ public class CalculatorControllerTest {
                 .andDo(print())
                 .andExpect(status().isUnprocessableEntity());
     }
+    @Test
+    public void shouldThrow422ErrorWhenMissingOneOperandOnDivisionOperation() throws Exception {
+        inputObject2.setOperand1("5");
+        String inputJson = mapper.writeValueAsString(inputObject2);
+        mockMvc.perform(
+                        post("/divide")
+                                .content(inputJson)
+                                .contentType(MediaType.APPLICATION_JSON))
+                .andDo(print())
+                .andExpect(status().isUnprocessableEntity());
+    }
+    @Test
+    public void shouldThrow422ErrorWhenOperandContainsAlphabeticCharacterOnDivisionOperation() throws Exception {
+        inputObject2.setOperand1("5");
+        inputObject2.setOperand2("string");
+        String inputJson = mapper.writeValueAsString(inputObject2);
+        mockMvc.perform(
+                        post("/divide")
+                                .content(inputJson)
+                                .contentType(MediaType.APPLICATION_JSON))
+                .andDo(print())
+                .andExpect(status().isUnprocessableEntity());
+    }
+
 }

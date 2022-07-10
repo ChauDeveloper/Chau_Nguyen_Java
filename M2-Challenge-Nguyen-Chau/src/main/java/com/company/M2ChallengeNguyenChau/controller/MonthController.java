@@ -28,10 +28,10 @@ public class MonthController {
 
     @RequestMapping(value = "/month/{monthNumber}", method = RequestMethod.GET)
     @ResponseStatus(HttpStatus.OK)
-    public String convertMonth(@PathVariable int monthNumber){
+    public Month convertMonth(@PathVariable int monthNumber){
         for(Month month:months) {
             if(month.getNumber() == monthNumber) {
-                return monthNumber + "-" + month.getName();
+                return month;
             }
         }
         throw new IllegalArgumentException("Please only use number 1-12");
