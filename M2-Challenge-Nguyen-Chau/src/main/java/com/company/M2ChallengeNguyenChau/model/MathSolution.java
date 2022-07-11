@@ -8,10 +8,10 @@ import java.util.Objects;
 
 public class MathSolution {
 
-    @NotEmpty(message = "must be a number")
+    @NotEmpty(message = "Must enter numbers only for operand1 and operand2, they cannot be empty nor contain any alphabetic or symbol characters")
     private String operand1;
 
-    @NotEmpty(message = "must be a number")
+    @NotEmpty(message = "Must enter numbers only for operand1 and operand2, they cannot be empty nor contain any alphabetic or symbol characters")
     private String operand2;
     private String operation;
     private int answer;

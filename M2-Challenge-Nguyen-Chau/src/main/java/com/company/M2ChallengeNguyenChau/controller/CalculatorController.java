@@ -1,6 +1,6 @@
 package com.company.M2ChallengeNguyenChau.controller;
 
-import com.company.M2ChallengeNguyenChau.exception.IllegalArgumentException;
+
 import com.company.M2ChallengeNguyenChau.model.MathSolution;
 import org.apache.tomcat.util.buf.StringUtils;
 import org.springframework.http.HttpStatus;
