@@ -8,15 +8,19 @@
 		<version>2.7.2</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.trilogyed</groupId>
-	<artifactId>gamestore-catalog</artifactId>
+	<groupId>com.trilogy</groupId>
+	<artifactId>gamestore-invoicing</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>gamestore-catalog</name>
-	<description>Demo project for Spring Boot</description>
+	<name>gamestore-invoicing</name>
+	<description>part of challenge M5 for Java Bootcamp</description>
 	<properties>
 		<java.version>1.8</java.version>
 	</properties>
 	<dependencies>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-actuator</artifactId>
+		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-jpa</artifactId>
@@ -39,17 +43,6 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
-		</dependency>
-		<dependency>
-			<groupId>junit</groupId>
-			<artifactId>junit</artifactId>
-			<version>4.12</version>
-			<scope>test</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.springdoc</groupId>
-			<artifactId>springdoc-openapi-ui</artifactId>
-			<version>1.6.6</version>
 		</dependency>
 	</dependencies>
 
