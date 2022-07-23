@@ -52,5 +52,5 @@ public class GameStoreControllerExceptionHandler extends ResponseEntityException
         body.put("errors", errors);
 
         return new ResponseEntity<>(body, HttpStatus.UNPROCESSABLE_ENTITY);
-    }
+    }//
 }
