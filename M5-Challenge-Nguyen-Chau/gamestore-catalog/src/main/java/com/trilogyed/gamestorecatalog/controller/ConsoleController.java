@@ -3,8 +3,10 @@ package com.trilogyed.gamestorecatalog.controller;
 import com.trilogyed.gamestorecatalog.service.GameStoreCatalogServiceLayer;
 import com.trilogyed.gamestorecatalog.viewModel.ConsoleViewModel;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cloud.client.discovery.DiscoveryClient;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.client.RestTemplate;
 
 
 import javax.validation.Valid;
@@ -14,6 +16,12 @@ import java.util.List;
 @RequestMapping(value = "/console")
 @CrossOrigin(origins = {"http://localhost:3000"})
 public class ConsoleController {
+    @Autowired
+    private DiscoveryClient discoveryClient;
+
+    private RestTemplate restTemplate = new RestTemplate();
+
+
 
     @Autowired
     GameStoreCatalogServiceLayer service;

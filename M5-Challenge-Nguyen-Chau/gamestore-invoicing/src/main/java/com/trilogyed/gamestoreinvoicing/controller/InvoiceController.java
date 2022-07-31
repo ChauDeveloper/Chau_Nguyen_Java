@@ -2,9 +2,12 @@ package com.trilogyed.gamestoreinvoicing.controller;
 
 
 import com.trilogyed.gamestoreinvoicing.service.GameStoreInvoicingServiceLayer;
+import com.trilogyed.gamestoreinvoicing.util.feign.GameStoreClient;
 import com.trilogyed.gamestoreinvoicing.viewModel.InvoiceViewModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -14,7 +17,11 @@ import java.util.List;
 @RequestMapping(value = "/invoice")
 @CrossOrigin(origins = {"http://localhost:3000"})
 public class InvoiceController {
-
+    @Autowired
+    private final GameStoreClient client;
+    InvoiceController(GameStoreClient client){
+        this.client = client;
+    }
     @Autowired
     GameStoreInvoicingServiceLayer service;
 
@@ -22,12 +29,12 @@ public class InvoiceController {
     // are left out by design due to its potential danger. The getAllInvoices is a questionable one since it could
     // overwhelm the system and infringes on data privacy; however, it does not damage data as with the Update and Delete
 
-    @PostMapping
-    @ResponseStatus(HttpStatus.CREATED)
-    public InvoiceViewModel purchaseItem(@RequestBody @Valid InvoiceViewModel invoiceViewModel) {
-        invoiceViewModel = service.createInvoice(invoiceViewModel);
-        return invoiceViewModel;
-    }
+//    @PostMapping
+//    @ResponseStatus(HttpStatus.CREATED)
+//    public InvoiceViewModel purchaseItem(@RequestBody @Valid InvoiceViewModel invoiceViewModel) {
+//        invoiceViewModel = service.createInvoice(invoiceViewModel);
+//        return invoiceViewModel;
+//    }
 
     @GetMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
@@ -63,4 +70,11 @@ public class InvoiceController {
             return invoiceViewModelList;
         }
     }
+
+    @RequestMapping(value = "/console/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Object> getConsoleById(@RequestParam("id") long consoleId){
+        return client.getConsole(consoleId);
+    }
+
+
 }

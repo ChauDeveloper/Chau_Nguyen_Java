@@ -1,11 +1,11 @@
 package com.trilogyed.gamestoreinvoicing.service;
 
 
+import com.trilogyed.gamestoreinvoicing.util.feign.GameStoreClient;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.math.BigDecimal;
-import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -17,7 +17,6 @@ import com.trilogyed.gamestoreinvoicing.viewModel.InvoiceViewModel;
 
 @Component
 public class GameStoreInvoicingServiceLayer {
-
     private final BigDecimal PROCESSING_FEE = new BigDecimal("15.49");
     private final BigDecimal MAX_INVOICE_TOTAL = new BigDecimal("999.99");
     private final String GAME_ITEM_TYPE = "Game";

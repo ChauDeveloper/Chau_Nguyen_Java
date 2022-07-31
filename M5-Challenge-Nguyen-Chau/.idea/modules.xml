@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/M5-Challenge-Nguyen-Chau.iml" filepath="$PROJECT_DIR$/.idea/M5-Challenge-Nguyen-Chau.iml" />
+      <module fileurl="file://$PROJECT_DIR$/eureka-server/eureka-server.iml" filepath="$PROJECT_DIR$/eureka-server/eureka-server.iml" />
+      <module fileurl="file://$PROJECT_DIR$/gamestore-catalog/gamestore-catalog.iml" filepath="$PROJECT_DIR$/gamestore-catalog/gamestore-catalog.iml" />
+      <module fileurl="file://$PROJECT_DIR$/gamestore-invoicing/gamestore-invoicing.iml" filepath="$PROJECT_DIR$/gamestore-invoicing/gamestore-invoicing.iml" />
+    </modules>
+  </component>
+</project>
