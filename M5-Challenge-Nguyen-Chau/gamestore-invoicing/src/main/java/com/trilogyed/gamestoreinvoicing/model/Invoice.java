@@ -1,6 +1,5 @@
 package com.trilogyed.gamestoreinvoicing.model;
 
-
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;

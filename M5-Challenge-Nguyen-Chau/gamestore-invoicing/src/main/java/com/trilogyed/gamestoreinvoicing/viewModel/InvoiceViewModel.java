@@ -1,6 +1,5 @@
 package com.trilogyed.gamestoreinvoicing.viewModel;
 
-
 import javax.validation.constraints.*;
 import java.math.BigDecimal;
 import java.util.Objects;

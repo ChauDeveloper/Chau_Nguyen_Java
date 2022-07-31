@@ -1,7 +1,5 @@
 package com.trilogyed.gamestoreinvoicing.repository;
 
-import static org.junit.Assert.*;
-
 import com.trilogyed.gamestoreinvoicing.model.*;
 import org.junit.Before;
 import org.junit.Test;
@@ -24,12 +22,21 @@ public class InvoiceRepositoryTest {
     @Autowired
     InvoiceRepository invoiceRepository;
     @Autowired
+    TShirtRepository tShirtRepository;
+    @Autowired
+    GameRepository gameRepository;
+    @Autowired
+    ConsoleRepository consoleRepository;
+    @Autowired
     TaxRepository taxRepository;
     @Autowired
     ProcessingFeeRepository processingFeeRepository;
 
     @Before
     public void setUp() throws Exception {
+        consoleRepository.deleteAll();
+        gameRepository.deleteAll();
+        tShirtRepository.deleteAll();
         invoiceRepository.deleteAll();
         processingFeeRepository.deleteAll();
 

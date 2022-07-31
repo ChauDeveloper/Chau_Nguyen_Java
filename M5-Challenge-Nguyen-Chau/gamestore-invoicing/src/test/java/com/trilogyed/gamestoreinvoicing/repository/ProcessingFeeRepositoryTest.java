@@ -1,6 +1,5 @@
 package com.trilogyed.gamestoreinvoicing.repository;
 
-
 import com.trilogyed.gamestoreinvoicing.model.ProcessingFee;
 import org.junit.Test;
 import org.junit.runner.RunWith;
