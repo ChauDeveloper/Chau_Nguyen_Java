@@ -1,15 +1,25 @@
 package com.trilogyed.gamestoreinvoicing.viewModel;
 
+import java.math.BigDecimal;
 import java.util.Objects;
 
 public class ItemViewModel {
     private long id;
     private long quantity;
+    private BigDecimal price;
     private String description;
     private String model;
     private String manufacturer;
     private String title;
     private String color;
+
+    public BigDecimal getPrice() {
+        return price;
+    }
+
+    public void setPrice(BigDecimal price) {
+        this.price = price;
+    }
 
     public long getId() {
         return id;
@@ -72,12 +82,12 @@ public class ItemViewModel {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         ItemViewModel that = (ItemViewModel) o;
-        return id == that.id && quantity == that.quantity && Objects.equals(description, that.description) && Objects.equals(model, that.model) && Objects.equals(manufacturer, that.manufacturer) && Objects.equals(title, that.title) && Objects.equals(color, that.color);
+        return id == that.id && quantity == that.quantity && Objects.equals(price, that.price) && Objects.equals(description, that.description) && Objects.equals(model, that.model) && Objects.equals(manufacturer, that.manufacturer) && Objects.equals(title, that.title) && Objects.equals(color, that.color);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, quantity, description, model, manufacturer, title, color);
+        return Objects.hash(id, quantity, price, description, model, manufacturer, title, color);
     }
 
     @Override
@@ -85,6 +95,7 @@ public class ItemViewModel {
         return "ItemViewModel{" +
                 "id=" + id +
                 ", quantity=" + quantity +
+                ", price=" + price +
                 ", description='" + description + '\'' +
                 ", model='" + model + '\'' +
                 ", manufacturer='" + manufacturer + '\'' +

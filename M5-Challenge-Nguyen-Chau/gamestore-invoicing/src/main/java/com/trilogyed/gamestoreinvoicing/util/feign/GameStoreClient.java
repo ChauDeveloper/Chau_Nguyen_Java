@@ -18,7 +18,7 @@ public interface GameStoreClient {
     public ItemViewModel getConsole(@PathVariable("id") long consoleId);
 
     @RequestMapping(value = "/game/{id}", method = RequestMethod.GET)
-    public ItemViewModel getGameInfo(@PathVariable("id") long gameId);
+    public ItemViewModel getGame(@PathVariable("id") long gameId);
 
     @RequestMapping(value = "/tshirt/{id}", method = RequestMethod.GET)
     public ItemViewModel getTShirt(@PathVariable("id") long tshirtId);

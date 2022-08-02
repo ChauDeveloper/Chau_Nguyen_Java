@@ -11,6 +11,7 @@ import org.springframework.http.RequestEntity;
 import org.springframework.web.bind.annotation.*;
 
 
+import javax.validation.Valid;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -34,12 +35,12 @@ public class InvoiceController {
     // are left out by design due to its potential danger. The getAllInvoices is a questionable one since it could
     // overwhelm the system and infringes on data privacy; however, it does not damage data as with the Update and Delete
 
-//    @PostMapping
-//    @ResponseStatus(HttpStatus.CREATED)
-//    public InvoiceViewModel purchaseItem(@RequestBody @Valid InvoiceViewModel invoiceViewModel) {
-//        invoiceViewModel = service.createInvoice(invoiceViewModel);
-//        return invoiceViewModel;
-//    }
+    @PostMapping
+    @ResponseStatus(HttpStatus.CREATED)
+    public InvoiceViewModel purchaseItem(@RequestBody @Valid InvoiceViewModel invoiceViewModel) {
+        invoiceViewModel = service.createInvoice(invoiceViewModel);
+        return invoiceViewModel;
+    }
 
     @GetMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
