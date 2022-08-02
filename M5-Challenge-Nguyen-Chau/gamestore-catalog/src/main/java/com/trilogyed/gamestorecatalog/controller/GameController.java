@@ -1,5 +1,6 @@
 package com.trilogyed.gamestorecatalog.controller;
 
+import com.trilogyed.gamestorecatalog.model.FeignModel;
 import com.trilogyed.gamestorecatalog.service.GameStoreCatalogServiceLayer;
 import com.trilogyed.gamestorecatalog.viewModel.GameViewModel;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -92,6 +93,18 @@ public class GameController {
             throw new IllegalArgumentException("No games were found.");
         } else {
             return games;
+        }
+    }
+
+
+    //Update game quantity to use by feign client from invoice microservice (by inputting only itemId and quantity to update without filling in the rest properties of an item
+    @PutMapping("/updatequantity")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void updateGameQuantity(@RequestBody FeignModel feignModel) {
+        if ( feignModel.getId()< 1) {
+            throw new IllegalArgumentException("Id in path must match id in view model");
+        } else if (feignModel.getId() > 0) {
+            service.updateGameQuantity(feignModel);
         }
     }
 }

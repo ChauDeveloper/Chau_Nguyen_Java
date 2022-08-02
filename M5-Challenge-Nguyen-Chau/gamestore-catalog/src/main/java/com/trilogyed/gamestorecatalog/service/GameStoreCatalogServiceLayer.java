@@ -1,6 +1,7 @@
 package com.trilogyed.gamestorecatalog.service;
 
 import com.trilogyed.gamestorecatalog.model.Console;
+import com.trilogyed.gamestorecatalog.model.FeignModel;
 import com.trilogyed.gamestorecatalog.model.Game;
 import com.trilogyed.gamestorecatalog.model.TShirt;
 import com.trilogyed.gamestorecatalog.repository.ConsoleRepository;
@@ -12,8 +13,6 @@ import com.trilogyed.gamestorecatalog.viewModel.TShirtViewModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import java.math.BigDecimal;
-import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -151,12 +150,74 @@ public class GameStoreCatalogServiceLayer {
         return buildConsoleViewModel(consoleRepo.save(console));
     }
 
+
     public ConsoleViewModel getConsoleById(long id) {
         Optional<Console> console = consoleRepo.findById(id);
         if (console == null)
             return null;
         else
             return buildConsoleViewModel(console.get());
+    }
+
+    //GET CONSOLE QUANTITY FOR INVOICE
+    public long getConsoleQuantity(long id){
+        Optional<Console> console = consoleRepo.findById(id);
+        ConsoleViewModel consoleViewModel;
+        consoleViewModel = buildConsoleViewModel(console.get());
+        return consoleViewModel.getQuantity();
+    }
+
+    //UPDATE CONSOLE QUANTITY FROM INVOICE
+  public void updateConsoleQuantity(FeignModel feignModel){
+      Console console = new Console();
+      Optional<Console> console1 = consoleRepo.findById(feignModel.getId());
+      ConsoleViewModel consoleViewModel = new ConsoleViewModel();
+      consoleViewModel = buildConsoleViewModel(console1.get());
+
+      console.setId(feignModel.getId());
+      console.setQuantity(feignModel.getQuantity());
+      console.setPrice(consoleViewModel.getPrice());
+      console.setProcessor(consoleViewModel.getProcessor());
+      console.setModel(consoleViewModel.getModel());
+      console.setMemoryAmount(consoleViewModel.getMemoryAmount());
+      console.setManufacturer(consoleViewModel.getManufacturer());
+
+      consoleRepo.save(console);
+  }
+
+    //UPDATE GAME QUANTITY FROM INVOICE
+    public void updateGameQuantity(FeignModel feignModel){
+        Game game = new Game();
+        Optional<Game> game1 = gameRepo.findById(feignModel.getId());
+        GameViewModel gameViewModel = new GameViewModel();
+        gameViewModel = buildGameViewModel(game1.get());
+
+        game.setId(feignModel.getId());
+        game.setQuantity(feignModel.getQuantity());
+        game.setPrice(gameViewModel.getPrice());
+        game.setDescription(gameViewModel.getDescription());
+        game.setEsrbRating(gameViewModel.getEsrbRating());
+        game.setStudio(gameViewModel.getStudio());
+        game.setTitle(gameViewModel.getTitle());
+
+        gameRepo.save(game);
+    }
+
+    //UPDATE TSHIRT QUANTITY FROM INVOICE
+    public void updateTShirtQuantity(FeignModel feignModel){
+        TShirt tShirt = new TShirt();
+        Optional<TShirt> tShirt1 = tShirtRepo.findById(feignModel.getId());
+        TShirtViewModel tShirtViewModel = new TShirtViewModel();
+        tShirtViewModel = buildTShirtViewModel(tShirt1.get());
+
+        tShirt.setId(feignModel.getId());
+        tShirt.setQuantity(feignModel.getQuantity());
+        tShirt.setPrice(tShirtViewModel.getPrice());
+        tShirt.setDescription(tShirtViewModel.getDescription());
+        tShirt.setColor(tShirtViewModel.getColor());
+        tShirt.setSize(tShirtViewModel.getSize());
+
+        tShirtRepo.save(tShirt);
     }
 
     public void updateConsole(ConsoleViewModel consoleViewModel) {
@@ -294,6 +355,7 @@ public class GameStoreCatalogServiceLayer {
         return tvmList;
     }
 
+
     //Helper Methods...
 
     public ConsoleViewModel buildConsoleViewModel(Console console) {
@@ -334,4 +396,7 @@ public class GameStoreCatalogServiceLayer {
 
         return tShirtViewModel;
     }
+
+
+
 }

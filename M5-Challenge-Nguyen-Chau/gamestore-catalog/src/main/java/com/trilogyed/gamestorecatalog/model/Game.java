@@ -22,6 +22,9 @@ public class Game {
     private String studio;
     private long quantity;
 
+
+
+    public Game(){}
     public long getId() {
         return id;
     }

@@ -20,8 +20,11 @@ public class Console implements Serializable {
     private String manufacturer;
     private String memoryAmount;
     private String processor;
-    private java.math.BigDecimal price;
+    private BigDecimal price;
     private long quantity;
+
+    public Console(){}
+
 
     public long getId() {
         return id;

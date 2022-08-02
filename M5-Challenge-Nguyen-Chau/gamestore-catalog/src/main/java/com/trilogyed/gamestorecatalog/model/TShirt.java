@@ -22,6 +22,8 @@ public class TShirt implements Serializable {
     private BigDecimal price;
     private long quantity;
 
+    public TShirt(){}
+
     public long getId() {
         return id;
     }

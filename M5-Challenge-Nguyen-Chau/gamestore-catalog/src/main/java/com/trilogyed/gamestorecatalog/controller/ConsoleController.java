@@ -1,5 +1,6 @@
 package com.trilogyed.gamestorecatalog.controller;
 
+import com.trilogyed.gamestorecatalog.model.FeignModel;
 import com.trilogyed.gamestorecatalog.service.GameStoreCatalogServiceLayer;
 import com.trilogyed.gamestorecatalog.viewModel.ConsoleViewModel;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -79,5 +80,29 @@ public class ConsoleController {
             throw new IllegalArgumentException("No consoles were found");
         } else
             return cvmByManufacturer;
+    }
+
+
+    //Get Console Quantity
+    @GetMapping("/{id}/quantity")
+    @ResponseStatus(HttpStatus.OK)
+    public long getConsoleQuantity(@PathVariable("id") long consoleId) {
+        ConsoleViewModel consoleViewModel = service.getConsoleById(consoleId);
+        if (consoleViewModel == null) {
+            throw new IllegalArgumentException("Console could not be retrieved for id " + consoleId);
+        } else {
+            return service.getConsoleQuantity(consoleId);
+        }
+    }
+
+    //Update console quantity to use by feign client from invoice microservice (by inputting only itemId and quantity to update without filling in the rest properties of an item
+    @PutMapping("/updatequantity")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void updateConsoleQuantity(@RequestBody FeignModel feignModel) {
+        if ( feignModel.getId()< 1) {
+            throw new IllegalArgumentException("Id in path must match id in view model");
+        } else if (feignModel.getId() > 0) {
+            service.updateConsoleQuantity(feignModel);
+        }
     }
 }

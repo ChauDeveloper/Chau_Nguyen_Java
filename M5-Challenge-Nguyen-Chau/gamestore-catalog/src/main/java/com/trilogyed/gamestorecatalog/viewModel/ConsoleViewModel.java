@@ -22,9 +22,11 @@ public class ConsoleViewModel {
     private BigDecimal price;
 
     @NotNull(message = "Console quantity is required")
-    @Min(value = 1, message = "Mim Quantity is 1")
+    @Min(value = 1, message = "Min Quantity is 1")
     @Max(value = 50000, message = "Max Quantity is 50,000")
     private long quantity;
+
+
 
     public long getId() {
         return id;
