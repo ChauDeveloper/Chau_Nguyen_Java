@@ -1,6 +1,7 @@
 package com.trilogyed.gamestoreinvoicing.service;
 
 import com.trilogyed.gamestoreinvoicing.util.feign.GameStoreClient;
+import com.trilogyed.gamestoreinvoicing.viewModel.ItemViewModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.RequestEntity;
 import org.springframework.stereotype.Component;
@@ -240,27 +241,27 @@ public class GameStoreInvoicingServiceLayer {
 
     //Feign client logics
     //GET ITEM INFO
-    public Item getConsole(long id) {
+    public ItemViewModel getConsole(long id) {
         return client.getConsole(id);
     }
-    public Item getGame(long id) {
+    public ItemViewModel getGame(long id) {
         return client.getGameInfo(id);
     }
-    public Item getTShirt(long id) {
+    public ItemViewModel getTShirt(long id) {
         return client.getTShirt(id);
     }
 
 
 
-    //UPDATE ITEM INFO
-    public void updateConsole(Item item){
-         client.updateConsole(item);
+    //UPDATE ITEM QUANTITY
+    public void updateConsoleQuantity(Item item){
+         client.updateConsoleQuantity(item);
     }
-    public void updateGame(Item item){
-        client.updateGame(item);
+    public void updateGameQuantity(Item item){
+        client.updateGameQuantity(item);
     }
-    public void updateTShirt(Item item){
-        client.updateTShirt(item);
+    public void updateTShirtQuantity(Item item){
+        client.updateTShirtQuantity(item);
     }
 
 

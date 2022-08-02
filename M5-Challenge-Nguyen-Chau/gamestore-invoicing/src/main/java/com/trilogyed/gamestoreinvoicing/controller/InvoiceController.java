@@ -4,6 +4,7 @@ import com.trilogyed.gamestoreinvoicing.model.Item;
 import com.trilogyed.gamestoreinvoicing.service.GameStoreInvoicingServiceLayer;
 import com.trilogyed.gamestoreinvoicing.util.feign.GameStoreClient;
 import com.trilogyed.gamestoreinvoicing.viewModel.InvoiceViewModel;
+import com.trilogyed.gamestoreinvoicing.viewModel.ItemViewModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.RequestEntity;
@@ -76,26 +77,28 @@ public class InvoiceController {
     }
 
     //Feign request logics
+    //Review item information
     @RequestMapping(value="/console/{id}", method = RequestMethod.GET)
-    public Item getConsole(@PathVariable("id") long consoleId) {
+    public ItemViewModel getConsole(@PathVariable("id") long consoleId) {
         return service.getConsole(consoleId);
     }
 
     @RequestMapping(value="/game/{id}", method = RequestMethod.GET)
-    public Item getGame(@PathVariable("id") long gameId) {
+    public ItemViewModel getGame(@PathVariable("id") long gameId) {
         return service.getGame(gameId);
     }
 
     @RequestMapping(value="/tshirt/{id}", method = RequestMethod.GET)
-    public Item getTShirt(@PathVariable("id") long tshirtId) {
+    public ItemViewModel getTShirt(@PathVariable("id") long tshirtId) {
         return service.getTShirt(tshirtId);
     }
 
-    @RequestMapping(value = "/console", method = RequestMethod.PUT)
-    public void updateConsole(@RequestBody Item item){ service.updateConsole(item);};
-    @RequestMapping(value = "/game", method = RequestMethod.PUT)
-    public void updateGame(@RequestBody Item item){ service.updateGame(item);};
-    @RequestMapping(value = "/tshirt", method = RequestMethod.PUT)
-    public void updateTShirt(@RequestBody Item item){ service.updateTShirt(item);};
+    //Update item quantity by inputting item id and quantity amount
+    @RequestMapping(value = "/console/updatequantity", method = RequestMethod.PUT)
+    public void updateConsoleQuantity(@RequestBody Item item){ service.updateConsoleQuantity(item);};
+    @RequestMapping(value = "/game/updatequantity", method = RequestMethod.PUT)
+    public void updateGameQuantity(@RequestBody Item item){ service.updateGameQuantity(item);};
+    @RequestMapping(value = "/tshirt/updatequantity", method = RequestMethod.PUT)
+    public void updateTShirtQuantity(@RequestBody Item item){ service.updateTShirtQuantity(item);};
 
 }

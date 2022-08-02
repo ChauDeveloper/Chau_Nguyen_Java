@@ -1,6 +1,7 @@
 package com.trilogyed.gamestoreinvoicing.util.feign;
 
 import com.trilogyed.gamestoreinvoicing.model.Item;
+import com.trilogyed.gamestoreinvoicing.viewModel.ItemViewModel;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.http.RequestEntity;
 import org.springframework.http.ResponseEntity;
@@ -14,22 +15,22 @@ import java.util.List;
 public interface GameStoreClient {
     //GET AN ITEM INFO
     @RequestMapping(value = "/console/{id}", method = RequestMethod.GET)
-    public Item getConsole(@PathVariable("id") long consoleId);
+    public ItemViewModel getConsole(@PathVariable("id") long consoleId);
 
     @RequestMapping(value = "/game/{id}", method = RequestMethod.GET)
-    public Item getGameInfo(@PathVariable("id") long gameId);
+    public ItemViewModel getGameInfo(@PathVariable("id") long gameId);
 
     @RequestMapping(value = "/tshirt/{id}", method = RequestMethod.GET)
-    public Item getTShirt(@PathVariable("id") long tshirtId);
+    public ItemViewModel getTShirt(@PathVariable("id") long tshirtId);
 
 
-    //UPDATE AN ITEM
-    @RequestMapping(value = "/console", method = RequestMethod.PUT)
-    public void updateConsole(@RequestBody Item item);
-    @RequestMapping(value = "/game", method = RequestMethod.PUT)
-    public void updateGame(@RequestBody Item item);
-    @RequestMapping(value = "/tshirt", method = RequestMethod.PUT)
-    public void updateTShirt(@RequestBody Item item);
+    //UPDATE AN ITEM'S QUANTITY
+    @RequestMapping(value = "/console/updatequantity", method = RequestMethod.PUT)
+    public void updateConsoleQuantity(@RequestBody Item item);
+    @RequestMapping(value = "/game/updatequantity", method = RequestMethod.PUT)
+    public void updateGameQuantity(@RequestBody Item item);
+    @RequestMapping(value = "/tshirt/updatequantity", method = RequestMethod.PUT)
+    public void updateTShirtQuantity(@RequestBody Item item);
 
 
 }
