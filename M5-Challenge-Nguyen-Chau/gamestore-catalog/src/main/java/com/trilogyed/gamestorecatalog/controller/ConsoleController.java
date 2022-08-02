@@ -17,10 +17,6 @@ import java.util.List;
 @RequestMapping(value = "/console")
 @CrossOrigin(origins = {"http://localhost:3000"})
 public class ConsoleController {
-    @Autowired
-    private DiscoveryClient discoveryClient;
-
-    private RestTemplate restTemplate = new RestTemplate();
 
 
 

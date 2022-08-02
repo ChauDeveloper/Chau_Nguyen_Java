@@ -227,7 +227,7 @@ public class GameStoreCatalogServiceLayer {
             throw new IllegalArgumentException("No console data is passed! Console object is null!");
 
         //make sure the Console exists. and if not, throw exception...
-        if (this.getConsoleById(consoleViewModel.getId()) == null)
+        if (this.getConsoleById(consoleViewModel.getId()) == null || consoleRepo.findById(consoleViewModel.getId()) == null)
             throw new IllegalArgumentException("No such console to update.");
 
         Console console = new Console();

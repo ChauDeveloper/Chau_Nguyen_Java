@@ -64,7 +64,7 @@ public class ConsoleControllerTest {
         outConsole.setModel("Nintendo");
         outConsole.setProcessor("AMD");
         outConsole.setPrice(new BigDecimal("199.89"));
-        outConsole.setId(15);
+        outConsole.setId(1);
 
         // the following mocks the service layer's method "createConsoleViewModel"
         // So we are mocking (not executing the service layer) since we are testing the controller here.
@@ -74,7 +74,7 @@ public class ConsoleControllerTest {
         // doReturn(outConsole).when(this.service).createConsole(inConsole);
         when(this.storeServiceLayer.createConsole(inConsole)).thenReturn(outConsole);
 
-        mockMvc.perform(
+       mockMvc.perform(
                         post("/console")
                                 .content(mapper.writeValueAsString(inConsole)) //converts object to JSON and places into RequestBody
                                 .contentType(MediaType.APPLICATION_JSON)
