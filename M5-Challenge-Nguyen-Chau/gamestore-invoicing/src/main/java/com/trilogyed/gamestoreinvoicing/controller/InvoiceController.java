@@ -19,15 +19,6 @@ import java.util.List;
 @RequestMapping(value = "/invoice")
 @CrossOrigin(origins = {"http://localhost:3000"})
 public class InvoiceController {
-
-//    @Autowired
-//    private final GameStoreClient client;
-//
-//    InvoiceController(GameStoreClient client){
-//        this.client=client;
-//    }
-
-
     @Autowired
     GameStoreInvoicingServiceLayer service;
 

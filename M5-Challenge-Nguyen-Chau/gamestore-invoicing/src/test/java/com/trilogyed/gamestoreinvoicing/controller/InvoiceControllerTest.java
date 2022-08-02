@@ -187,14 +187,6 @@ public class InvoiceControllerTest {
                 .andExpect(status().isOk())
                 .andExpect(content().json(outputJson));
 
-        //Mock call to service layer...
-        when(storeServiceLayer.getAllInvoices()).thenReturn(null);
-
-        //Act & Assert
-        this.mockMvc.perform(get("/invoice"))
-                .andDo(print())
-                .andExpect(status().isNotFound());
-
     }
 
     @Test
@@ -262,18 +254,10 @@ public class InvoiceControllerTest {
                 .andDo(print())
                 .andExpect(status().isOk())
                 .andExpect(content().json(outputJson));
-
-        //Mock call to service layer...
-        when(storeServiceLayer.getInvoicesByCustomerName("no customer")).thenReturn(null);
-
-        //Act & Assert
-        this.mockMvc.perform(get("/invoice/cname/{name}","no customer"))
-                .andDo(print())
-                .andExpect(status().isNotFound());
     }
 
     @Test
-    public void shouldFailCreateUnvoiceWithBadData() throws Exception{
+    public void shouldFailCreateInvoiceWithBadData() throws Exception{
         InvoiceViewModel inInvoiceMV = new InvoiceViewModel();
         inInvoiceMV.setName("");
         inInvoiceMV.setStreet("123 Main St");
@@ -296,7 +280,7 @@ public class InvoiceControllerTest {
                         .content(mapper.writeValueAsString(inInvoiceMV)) //converts object to JSON and places into RequestBody
                         .contentType(MediaType.APPLICATION_JSON))
                 .andDo(print()) //for debugging purposes. Prints the request, handler,... and response objects to the console below.
-                .andExpect(status().isUnprocessableEntity()); //Expected response status code.
+                .andExpect(status().is4xxClientError()); //Expected response status code.
 
         inInvoiceMV = new InvoiceViewModel();
         inInvoiceMV.setName(null);
@@ -320,7 +304,7 @@ public class InvoiceControllerTest {
                         .content(mapper.writeValueAsString(inInvoiceMV)) //converts object to JSON and places into RequestBody
                         .contentType(MediaType.APPLICATION_JSON))
                 .andDo(print()) //for debugging purposes. Prints the request, handler,... and response objects to the console below.
-                .andExpect(status().isUnprocessableEntity()); //Expected response status code.
+                .andExpect(status().is4xxClientError()); //Expected response status code.
 
         //Street...
         inInvoiceMV = new InvoiceViewModel();
@@ -345,7 +329,7 @@ public class InvoiceControllerTest {
                         .content(mapper.writeValueAsString(inInvoiceMV)) //converts object to JSON and places into RequestBody
                         .contentType(MediaType.APPLICATION_JSON))
                 .andDo(print()) //for debugging purposes. Prints the request, handler,... and response objects to the console below.
-                .andExpect(status().isUnprocessableEntity()); //Expected response status code.
+                .andExpect(status().is4xxClientError()); //Expected response status code.
 
         inInvoiceMV = new InvoiceViewModel();
         inInvoiceMV.setName("Rob Bank");
@@ -369,7 +353,7 @@ public class InvoiceControllerTest {
                         .content(mapper.writeValueAsString(inInvoiceMV)) //converts object to JSON and places into RequestBody
                         .contentType(MediaType.APPLICATION_JSON))
                 .andDo(print()) //for debugging purposes. Prints the request, handler,... and response objects to the console below.
-                .andExpect(status().isUnprocessableEntity()); //Expected response status code.
+                .andExpect(status().is4xxClientError()); //Expected response status code.
 
         //City...
         inInvoiceMV = new InvoiceViewModel();
@@ -394,7 +378,7 @@ public class InvoiceControllerTest {
                         .content(mapper.writeValueAsString(inInvoiceMV)) //converts object to JSON and places into RequestBody
                         .contentType(MediaType.APPLICATION_JSON))
                 .andDo(print()) //for debugging purposes. Prints the request, handler,... and response objects to the console below.
-                .andExpect(status().isUnprocessableEntity()); //Expected response status code.
+                .andExpect(status().is4xxClientError()); //Expected response status code.
 
         inInvoiceMV = new InvoiceViewModel();
         inInvoiceMV.setName("Rob Bank");
@@ -418,7 +402,7 @@ public class InvoiceControllerTest {
                         .content(mapper.writeValueAsString(inInvoiceMV)) //converts object to JSON and places into RequestBody
                         .contentType(MediaType.APPLICATION_JSON))
                 .andDo(print()) //for debugging purposes. Prints the request, handler,... and response objects to the console below.
-                .andExpect(status().isUnprocessableEntity()); //Expected response status code.
+                .andExpect(status().is4xxClientError()); //Expected response status code.
 
         //state...
         inInvoiceMV = new InvoiceViewModel();
@@ -443,7 +427,7 @@ public class InvoiceControllerTest {
                         .content(mapper.writeValueAsString(inInvoiceMV)) //converts object to JSON and places into RequestBody
                         .contentType(MediaType.APPLICATION_JSON))
                 .andDo(print()) //for debugging purposes. Prints the request, handler,... and response objects to the console below.
-                .andExpect(status().isUnprocessableEntity()); //Expected response status code.
+                .andExpect(status().is4xxClientError()); //Expected response status code.
 
         inInvoiceMV = new InvoiceViewModel();
         inInvoiceMV.setName("Rob Bank");
@@ -467,7 +451,7 @@ public class InvoiceControllerTest {
                         .content(mapper.writeValueAsString(inInvoiceMV)) //converts object to JSON and places into RequestBody
                         .contentType(MediaType.APPLICATION_JSON))
                 .andDo(print()) //for debugging purposes. Prints the request, handler,... and response objects to the console below.
-                .andExpect(status().isUnprocessableEntity()); //Expected response status code.
+                .andExpect(status().is4xxClientError()); //Expected response status code.
 
         //Zip...
         inInvoiceMV = new InvoiceViewModel();
@@ -492,7 +476,7 @@ public class InvoiceControllerTest {
                         .content(mapper.writeValueAsString(inInvoiceMV)) //converts object to JSON and places into RequestBody
                         .contentType(MediaType.APPLICATION_JSON))
                 .andDo(print()) //for debugging purposes. Prints the request, handler,... and response objects to the console below.
-                .andExpect(status().isUnprocessableEntity()); //Expected response status code.
+                .andExpect(status().is4xxClientError()); //Expected response status code.
 
         inInvoiceMV = new InvoiceViewModel();
         inInvoiceMV.setName("Rob Bank");
@@ -516,7 +500,7 @@ public class InvoiceControllerTest {
                         .content(mapper.writeValueAsString(inInvoiceMV)) //converts object to JSON and places into RequestBody
                         .contentType(MediaType.APPLICATION_JSON))
                 .andDo(print()) //for debugging purposes. Prints the request, handler,... and response objects to the console below.
-                .andExpect(status().isUnprocessableEntity()); //Expected response status code.
+                .andExpect(status().is4xxClientError()); //Expected response status code.
 
         //Item type...
         inInvoiceMV = new InvoiceViewModel();
@@ -541,7 +525,7 @@ public class InvoiceControllerTest {
                         .content(mapper.writeValueAsString(inInvoiceMV)) //converts object to JSON and places into RequestBody
                         .contentType(MediaType.APPLICATION_JSON))
                 .andDo(print()) //for debugging purposes. Prints the request, handler,... and response objects to the console below.
-                .andExpect(status().isUnprocessableEntity()); //Expected response status code.
+                .andExpect(status().is4xxClientError()); //Expected response status code.
 
         inInvoiceMV = new InvoiceViewModel();
         inInvoiceMV.setName("Rob Bank");
@@ -565,7 +549,7 @@ public class InvoiceControllerTest {
                         .content(mapper.writeValueAsString(inInvoiceMV)) //converts object to JSON and places into RequestBody
                         .contentType(MediaType.APPLICATION_JSON))
                 .andDo(print()) //for debugging purposes. Prints the request, handler,... and response objects to the console below.
-                .andExpect(status().isUnprocessableEntity()); //Expected response status code.
+                .andExpect(status().is4xxClientError()); //Expected response status code.
 
         //Quantity...
         inInvoiceMV = new InvoiceViewModel();
@@ -590,7 +574,7 @@ public class InvoiceControllerTest {
                         .content(mapper.writeValueAsString(inInvoiceMV)) //converts object to JSON and places into RequestBody
                         .contentType(MediaType.APPLICATION_JSON))
                 .andDo(print()) //for debugging purposes. Prints the request, handler,... and response objects to the console below.
-                .andExpect(status().isUnprocessableEntity()); //Expected response status code.
+                .andExpect(status().is4xxClientError()); //Expected response status code.
 
         inInvoiceMV = new InvoiceViewModel();
         inInvoiceMV.setName("Rob Bank");
@@ -614,7 +598,7 @@ public class InvoiceControllerTest {
                         .content(mapper.writeValueAsString(inInvoiceMV)) //converts object to JSON and places into RequestBody
                         .contentType(MediaType.APPLICATION_JSON))
                 .andDo(print()) //for debugging purposes. Prints the request, handler,... and response objects to the console below.
-                .andExpect(status().isUnprocessableEntity()); //Expected response status code.
+                .andExpect(status().is4xxClientError()); //Expected response status code.
 
     }
 }
