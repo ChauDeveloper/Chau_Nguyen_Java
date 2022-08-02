@@ -15,6 +15,7 @@ import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.Optional;
 
 @Component
@@ -69,7 +70,7 @@ public class GameStoreCatalogServiceLayer {
 
         //make sure the game exists. and if not, throw exception...
         if (this.getGame(gameViewModel.getId())==null)
-            throw new IllegalArgumentException("No such game to update.");
+            throw new NoSuchElementException("No such game to update.");
 
         Game game = new Game();
         game.setId(gameViewModel.getId());
@@ -228,7 +229,7 @@ public class GameStoreCatalogServiceLayer {
 
         //make sure the Console exists. and if not, throw exception...
         if (this.getConsoleById(consoleViewModel.getId()) == null || consoleRepo.findById(consoleViewModel.getId()) == null)
-            throw new IllegalArgumentException("No such console to update.");
+            throw new NoSuchElementException("No such console to update.");
 
         Console console = new Console();
         console.setId(consoleViewModel.getId());
@@ -304,7 +305,7 @@ public class GameStoreCatalogServiceLayer {
 
         //make sure the Console exists. and if not, throw exception...
         if (this.getTShirt(tShirtViewModel.getId())==null)
-            throw new IllegalArgumentException("No such TShirt to update.");
+            throw new NoSuchElementException("No such TShirt to update.");
 
         TShirt tShirt = new TShirt();
         tShirt.setId(tShirtViewModel.getId());

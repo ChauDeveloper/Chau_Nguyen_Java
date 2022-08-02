@@ -14,6 +14,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.Optional;
 
 import static org.junit.Assert.*;
@@ -91,7 +92,7 @@ public class GameStoreCatalogServiceLayerTest {
 
     }
 
-    @Test(expected = IllegalArgumentException.class)
+    @Test(expected = NoSuchElementException.class)
     public void shouldFailWhenUpdateConsoleWithBadId() {
         ConsoleViewModel console2 = new ConsoleViewModel();
         console2.setModel("Playstation");
@@ -252,7 +253,7 @@ public class GameStoreCatalogServiceLayerTest {
         service.updateTShirt(tShirt);
     }
 
-    @Test(expected = IllegalArgumentException.class)
+    @Test(expected = NoSuchElementException.class)
     public void shouldFailUpdateTShirtWithBadId() {
 
         TShirtViewModel tShirt = new TShirtViewModel();
@@ -435,7 +436,7 @@ public class GameStoreCatalogServiceLayerTest {
         verify(gameRepository, times(2)).save(any(Game.class));
     }
 
-    @Test(expected = IllegalArgumentException.class)
+    @Test(expected = NoSuchElementException.class)
     public void shouldFailWhenUpdateGameInvalidId() {
 
         GameViewModel game = new GameViewModel();
